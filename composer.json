@@ -1,0 +1,30 @@
+{
+    "authors": [
+        {
+            "name": "Dennis Meckel"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Rayne\\Pagination\\": "src/Rayne/Pagination"
+        }
+    },
+    "description": "Pagination library without dependencies.",
+    "homepage": "http://github.com/Rayne/Pagination",
+    "keywords": ["pagination", "paginator"],
+    "license": "TODO",
+    "name": "Rayne/Pagination",
+    "require": {
+        "php": "~5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    },
+    "support": {
+        "issues": "http://github.com/Rayne/Pagination/issues",
+        "source": "http://github.com/Rayne/Pagination"
+    },
+    "time": "2014-07-01",
+    "type": "library",
+    "version": "0.0.0-dev"
+}

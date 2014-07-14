@@ -1,0 +1,29 @@
+{##
+ # This is an advanced pagination macro for Twig and Bootstrap Framework.
+ # It highlights the current page and hides redundant pagination controls (first, previous, next and last).
+ # As the controls "previous" and "next" are always redundant or superfluous, they will never be displayed.
+ #
+ # @param array p Result of SearchPagination::toArray()
+ # @param string uri Optional URI used as prefix: {{ uri }}?page={{ page }}
+ #}
+{% macro pagination(p, uri) %}
+	<ul class="pagination">
+		{% if p.page != p.first and p.begin != p.first %}
+			<li><a href="{{ uri|default() }}?page={{ p.first }}">
+				<span class="glyphicon glyphicon-fast-backward"></span>
+				<span class="sr-only">First</span>
+			</a></li>
+		{% endif %}
+
+		{% for i in p.begin..p.end %}
+			<li{{ p.page == i ? ' class="active"' }}><a href="{{ uri|default() }}?page={{ i }}">{{ i }}</a></li>
+		{% endfor %}
+
+		{% if p.page != p.last and p.end != p.last %}
+			<li><a href="{{ uri|default() }}?page={{ p.last }}">
+				<span class="glyphicon glyphicon-fast-forward"></span>
+				<span class="sr-only">Last</span>
+			</a></li>
+		{% endif %}
+	</ul>
+{% endmacro %}
