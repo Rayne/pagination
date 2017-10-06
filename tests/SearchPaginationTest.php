@@ -1,12 +1,11 @@
 <?php
 
-namespace Rayne\Validation\Complex;
+namespace Rayne\Pagination;
 
 use PHPUnit_Framework_TestCase;
-use Rayne\Pagination\SearchPaginationInterface;
-use Rayne\Pagination\SearchPagination;
+use stdClass;
 
-class PaginationImplTest extends PHPUnit_Framework_TestCase
+class SearchPaginationTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Builds SearchPaginationImpl objects and verifies constructor values.
@@ -233,5 +232,63 @@ class PaginationImplTest extends PHPUnit_Framework_TestCase
         $this->assertSame(10, $p->getTotalPages());
         $this->assertSame(false, $p->isOnValidPage());
         $this->buildExpectedToArrayResult($p, 1, 2, 9, 10, 10, 10, 10, 90, $itemsPerPage);
+    }
+
+    public function provideUnsupportedPageInput()
+    {
+        return [
+            // Floats are no longer supported as PHP 7.0.2 changed the string casting of them.
+            // `(string) -0.0 === "-0"`. Earlier versions (and HHVM) converted `-0.0` to `"0"`.
+            [-0.0],
+            [0.0],
+            [+0.0],
+
+            // Boolean are not supported as pages.
+            [true],
+            [false],
+
+            // Neither are the following examples.
+            [null],
+            [new stdClass],
+
+            ['-1.0'],
+            ['-0.0'],
+            ['0.0'],
+            ['+0.0'],
+            ['+1.0'],
+
+            ['-1,0'],
+            ['-0,0'],
+            ['0,0'],
+            ['+0,0'],
+            ['+1,0'],
+
+            ['10E1'],
+            ['10e1'],
+
+            ['-0'],
+            ['+0'],
+            ['+1'],
+
+            ['0x'],
+            ['0xFF'],
+
+            [['Hello Array']],
+        ];
+    }
+
+    /**
+     * @dataProvider provideUnsupportedPageInput
+     * @param mixed $currentPage
+     */
+    public function testUnsupportedPageInput($currentPage)
+    {
+        $p = new SearchPagination(100, 10, $currentPage);
+
+        // Invalid page.
+        $this->assertFalse($p->isOnValidPage());
+
+        // Fallback to a sane page for pagination rendering.
+        $this->assertSame(1, $p->getCurrentPage());
     }
 }

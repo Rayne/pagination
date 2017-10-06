@@ -26,11 +26,6 @@ class SearchPagination implements SearchPaginationInterface
     private $isZeroBased = false;
 
     /**
-     * @var int|string This value is not safe!
-     */
-    private $originalCurrentPage;
-
-    /**
      * @var int
      */
     private $totalItems;
@@ -41,19 +36,31 @@ class SearchPagination implements SearchPaginationInterface
     private $itemsPerPage;
 
     /**
+     * @var int `-1` when invalid.
+     */
+    private $userProvidedCurrentPage;
+
+    /**
      * @param int $totalItems Item count.
      * @param int $itemsPerPage Items per page.
-     * @param mixed $currentPage Selected page. Invalid values get replaced by the next appropriate page (first or last).
+     * @param mixed $currentPage Selected page. Only integers and string encoded integers are candidates for being valid values.
+     *                           Invalid values get replaced by the next appropriate page (first or last).
      * @param int $pagePadding Page padding, eg. padding of two: [ 1 ][ 2 ][PAGE][ 3 ][ 4 ].
      * @param bool $isZeroBased Whether pages are zero (or one) based.
      */
     public function __construct($totalItems, $itemsPerPage, $currentPage, $pagePadding = 4, $isZeroBased = false)
     {
         $this->pagePadding = (int) $pagePadding;
-        $this->originalCurrentPage = $currentPage;
         $this->totalItems = (int) $totalItems;
         $this->itemsPerPage = (int) $itemsPerPage;
         $this->isZeroBased = (bool) $isZeroBased;
+
+        if (is_int($currentPage) || (is_string($currentPage) && $currentPage === (string) (int) $currentPage)) {
+            $this->userProvidedCurrentPage = (int) $currentPage;
+        } else {
+            // Invalid page.
+            $this->userProvidedCurrentPage = -1;
+        }
 
         $this->setupRange();
     }
@@ -166,8 +173,7 @@ class SearchPagination implements SearchPaginationInterface
      */
     public function getCurrentPage()
     {
-        $page = Helper::isInteger($this->originalCurrentPage) ? (int) $this->originalCurrentPage : $this->getFirstPage();
-        return max($this->getFirstPage(), min($this->getLastPage(), $page));
+        return max($this->getFirstPage(), min($this->getLastPage(), $this->userProvidedCurrentPage));
     }
 
     /**
@@ -217,8 +223,7 @@ class SearchPagination implements SearchPaginationInterface
      */
     public function isOnValidPage()
     {
-        $integer = Helper::isInteger($this->originalCurrentPage);
-        return $integer && $this->getCurrentPage() == $this->originalCurrentPage;
+        return $this->getCurrentPage() == $this->userProvidedCurrentPage;
     }
 
     /**
