@@ -11,7 +11,7 @@
     },
     "description": "Pagination library without dependencies.",
     "keywords": ["filter-pagination", "pagination", "paginator", "search-pagination"],
-    "license": "TODO",
+    "license": "MIT",
     "name": "Rayne/Pagination",
     "require": {
         "php": ">=5.6"

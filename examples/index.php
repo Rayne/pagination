@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * (c) Dennis Meckel
+ *
+ * For the full copyright and license information,
+ * please view the LICENSE file that was distributed with this source code.
+ */
+
 use Rayne\Pagination\SearchPagination;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
