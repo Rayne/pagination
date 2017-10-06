@@ -1,6 +1,6 @@
 <?php
 
-use Rayne\Pagination\SearchPaginationImpl;
+use Rayne\Pagination\SearchPagination;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -19,7 +19,7 @@ $perPage = 5;
 $requestedPage = isset($_GET['page']) ? strval($_GET['page']) : 1;
 $padding = 4; // Optional
 $isZeroBased = false; // Optional
-$pagination = new SearchPaginationImpl($totalItems, $perPage, $requestedPage, $padding, $isZeroBased);
+$pagination = new SearchPagination($totalItems, $perPage, $requestedPage, $padding, $isZeroBased);
 
 /**
  * Load the requested entries from the database only when the client requested an existing page.

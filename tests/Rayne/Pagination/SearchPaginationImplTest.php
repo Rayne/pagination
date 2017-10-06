@@ -4,7 +4,7 @@ namespace Rayne\Validation\Complex;
 
 use PHPUnit_Framework_TestCase;
 use Rayne\Pagination\SearchPaginationInterface;
-use Rayne\Pagination\SearchPaginationImpl;
+use Rayne\Pagination\SearchPagination;
 
 class PaginationImplTest extends PHPUnit_Framework_TestCase
 {
@@ -16,11 +16,11 @@ class PaginationImplTest extends PHPUnit_Framework_TestCase
      * @param $currentPage
      * @param $pagePadding
      * @param $isZeroBased
-     * @return SearchPaginationImpl
+     * @return SearchPagination
      */
     private function buildPaginationObject($totalItems, $itemsPerPage, $currentPage, $pagePadding, $isZeroBased)
     {
-        $p = new SearchPaginationImpl($totalItems, $itemsPerPage, $currentPage, $pagePadding, $isZeroBased);
+        $p = new SearchPagination($totalItems, $itemsPerPage, $currentPage, $pagePadding, $isZeroBased);
         $this->assertSame($itemsPerPage, $p->getItemLimit());
         $this->assertSame($itemsPerPage, $p->getItemsPerPage());
         $this->assertSame($totalItems, $p->getTotalItems());

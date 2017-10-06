@@ -3,7 +3,7 @@
 namespace Rayne\Pagination;
 
 // TODO Builder with fluent interface?
-class SearchPaginationImpl implements SearchPaginationInterface
+class SearchPagination implements SearchPaginationInterface
 {
     /**
      * @var int
