@@ -2,11 +2,7 @@
 
 use Rayne\Pagination\SearchPaginationImpl;
 
-/**
- * We are using the dependency free class loader,
- * but you could also use a PSR-4 loader or Composer.
- */
-require_once dirname(__DIR__) . '/bootstrap.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 /**
  * The sophisticated database for this example.
