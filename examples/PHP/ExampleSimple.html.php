@@ -1,8 +1,8 @@
 <?php
 
-use Rayne\Pagination\SearchPagination;
+use Rayne\Pagination\SearchPaginationInterface;
 
-/** @var $pagination SearchPagination */
+/** @var $pagination SearchPaginationInterface */
 
 echo '<ul class="pagination">'."\n";
 echo "\t".'<li><a href="?page=' . $pagination->getFirstPage() . '">First</a></li>'."\n";

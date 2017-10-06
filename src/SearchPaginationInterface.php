@@ -13,7 +13,7 @@ namespace Rayne\Pagination;
  * @see #getItemOffset
  * @see #getSequence
  */
-interface SearchPagination
+interface SearchPaginationInterface
 {
     /**
      * @see #getFirstPage

@@ -3,7 +3,7 @@
 namespace Rayne\Validation\Complex;
 
 use PHPUnit_Framework_TestCase;
-use Rayne\Pagination\SearchPagination;
+use Rayne\Pagination\SearchPaginationInterface;
 use Rayne\Pagination\SearchPaginationImpl;
 
 class PaginationImplTest extends PHPUnit_Framework_TestCase
@@ -30,7 +30,7 @@ class PaginationImplTest extends PHPUnit_Framework_TestCase
     /**
      * Verifies derivable properties.
      *
-     * @param SearchPagination $p
+     * @param SearchPaginationInterface $p
      * @param $firstPage
      * @param $firstPageInRange
      * @param $previousPage
@@ -41,7 +41,7 @@ class PaginationImplTest extends PHPUnit_Framework_TestCase
      * @param $offset
      * @param $limit
      */
-    private function buildExpectedToArrayResult(SearchPagination $p, $firstPage, $firstPageInRange, $previousPage, $currentPage, $nextPage, $lastPageInRange, $lastPage, $offset, $limit)
+    private function buildExpectedToArrayResult(SearchPaginationInterface $p, $firstPage, $firstPageInRange, $previousPage, $currentPage, $nextPage, $lastPageInRange, $lastPage, $offset, $limit)
     {
         $this->assertSame($firstPage, $p->getFirstPage());
         $this->assertSame($firstPageInRange, $p->getFirstPageInRange());
@@ -57,15 +57,15 @@ class PaginationImplTest extends PHPUnit_Framework_TestCase
         $this->assertSame($limit, $p->getItemLimit());
 
         $this->assertSame([
-            SearchPagination::FIRST => $firstPage,
-            SearchPagination::BEGIN => $firstPageInRange,
-            SearchPagination::PREVIOUS => $previousPage,
-            SearchPagination::PAGE => $currentPage,
-            SearchPagination::NEXT => $nextPage,
-            SearchPagination::END => $lastPageInRange,
-            SearchPagination::LAST => $lastPage,
-            SearchPagination::OFFSET => $offset,
-            SearchPagination::LIMIT => $limit,
+            SearchPaginationInterface::FIRST => $firstPage,
+            SearchPaginationInterface::BEGIN => $firstPageInRange,
+            SearchPaginationInterface::PREVIOUS => $previousPage,
+            SearchPaginationInterface::PAGE => $currentPage,
+            SearchPaginationInterface::NEXT => $nextPage,
+            SearchPaginationInterface::END => $lastPageInRange,
+            SearchPaginationInterface::LAST => $lastPage,
+            SearchPaginationInterface::OFFSET => $offset,
+            SearchPaginationInterface::LIMIT => $limit,
         ], $p->toArray());
     }
 
