@@ -1,86 +1,122 @@
-Rayne\Pagination
-================
+# Rayne\Pagination
 
 Pagination library without dependencies.
 
-FEATURES
---------
+## Contents
 
-*	No dependencies (except the ones for testing)
-*	Support for zero indexed pages (`$isZeroBased=true`)
-*	Safe page verification accepting `mixed` data (client's raw input)
-*	Ignore invalid page requests with `!SearchPagination->isOnValidPage()`
-*	Fetch appropriate offsets (for first or last page) on special pages
-	*	Pages out of bounds (`-10` or `900` out of `10`)
-	*	Invalid pages (`4x`, `3.41` or `ARRAY()`  aren't integers)
-*	No markup
-*	Decoupled from databases
-*	Array export for templating (`toArray()`)
+* [Installation](#installation)
+* [Features](#features)
+* [Usage](#usage)
+* [Examples](#examples)
+* [Tests](#tests)
 
-INSTALLATION
-------------
+## INSTALLATION
 
-It is recommended to install the library with [Composer](https://getcomposer.org).
+It's recommended to use the dependency manager
+[Composer](https://getcomposer.org/download)
+to install `rayne/pagination`.
 
-INSTALLATION WITH COMPOSER
---------------------------
+```bash
+composer require rayne/pagination
+```
 
-	php -r "readfile('https://getcomposer.org/installer');" | php
-	php composer.phar require --update-no-dev Rayne/Pagination
+## FEATURES
 
-MANUAL INSTALLATION
--------------------
+* Implementation of the *Search Pagination Pattern* defined by
+  [Yahoo (Dead Link)](https://developer.yahoo.com/ypatterns/navigation/pagination/search.html)
 
-1.	Download the latest package from [GitHub](https://github.com/rayne/pagination)
-1.	Extract the package
-1.	Register the library with one of the following options
-	*	Point a PSR-4 loader with `Rayne\Pagination` to `PACKAGE/src/Rayne/Pagination`
-	*	`require_once PACKAGE/bootstrap.php;` (without dependencies)
+* Implementation of the *Filter Pagination Pattern* defined by Yahoo
+  (This pattern is currently not officially supported but the code is ready for playing around)
 
-EXAMPLES
---------
+* No dependencies (except the ones for testing)
 
-The following examples are part of the `/examples` directory.
+* Support for zero indexed pages (`$isZeroBased=true`)
 
-*	Working HTML/PHP example (`/examples/index.php`)
-*	Simple (highlights current page) and advanced (highlights current page, hides redundant pagination controls) examples
-	*	PHP snippets (`/examples/PHP`)
-	*	[Twig](http://twig.sensiolabs.org) macros (`/examples/Twig`)
-*	The Twig macros are [Bootstrap Framework](http://getbootstrap.com) compatible
+* Safe page verification accepting `mixed` data (client's raw input)
 
-USAGE
------
+* Ignore invalid page requests with `!SearchPagination->isOnValidPage()`
 
-1.	Retrieve item count `$totalItems`
-1.	Let `Rayne\Pagination` calculate the offset
+* Fetch appropriate offsets (for first or last page) on special pages
 
-		$pagination = new SearchPaginationImpl(
-			$totalItems, $itemsPerPage, $currentPage, $pagePadding = 4, $isZeroBased = false);
+  * Pages out of bounds (`-10` or `900` out of `10`)
 
-1.	Verify `$currentPage` with `$pagination->isOnValidPage()`
-	or retrieve the requested items with the help of `$pagination->getItemOffset()` and `$pagination->getItemLimit()`
-1.	Render results and controls with the help of `$pagination` or `$pagination->toArray()`
+  * Invalid pages (`4x`, `3.41` or `ARRAY()`  aren't integers)
+
+* No markup
+
+* Decoupled from databases
+
+* Array export for templating (`toArray()`)
+
+## USAGE
+
+### SearchPagination
+
+1. Retrieve item count `$totalItems`
+
+2. Let `Rayne\Pagination` calculate the offset
+
+   ```php
+   $pagination = new SearchPagination(
+       $totalItems,
+       $itemsPerPage,
+       $currentPage,
+       $pagePadding = 4, 
+       $isZeroBased = false
+   );
+   ```
+
+3. Verify `$currentPage` with `$pagination->isOnValidPage()`
+   or retrieve the requested items with the help of `$pagination->getItemOffset()`
+   and `$pagination->getItemLimit()`
+
+4. Render results and controls with the help of `$pagination`
+   or `$pagination->toArray()`
+   and the example templates in the `/examples` directory
 
 Read the [EXAMPLES](#EXAMPLES) section for examples and ideas.
 
-REPACKING
----------
+### FilterPagination
 
-You are allowed to repack the library for shipping with your projects.
-The following files and directories are required.
+The filter pagination pattern is not officially supported
+but feel free to play around with the following classes:
 
-*	`src/Rayne/Pagination`
-*	`bootstrap.php` (not required when using a PSR4-loader or Composer)
+```php
+Rayne\Pagination\Filter\FilterPage
+Rayne\Pagination\Filter\FilterPages
+Rayne\Pagination\Filter\FilterPagination
+```
 
-You are not allowed to remove licencing agreements.
+## EXAMPLES
 
-TESTS
------
+The following examples are part of the `/examples` directory.
 
-	composer install --dev
-	vendor/bin/phpunit
+* Complete example (`/examples/index.php`)
 
-LICENCE
--------
+* Simple (highlights current page) and advanced (highlights current page, hides redundant pagination controls) examples
 
-TODO
+  * PHP snippets (`/examples/PHP`)
+
+  * [Twig](http://twig.sensiolabs.org) macros (`/examples/Twig`)
+
+* The Twig macros are [Bootstrap Framework](http://getbootstrap.com) compatible
+
+## Tests
+
+1. Clone the repository
+
+   ```bash
+   git clone https://github.com/rayne/pagination.git
+   ```
+
+2. Install the development dependencies
+
+   ```bash
+   composer install --dev
+   ```
+
+3. Run the tests
+
+   ```bash
+   composer test
+   ```
