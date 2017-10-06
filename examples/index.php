@@ -30,8 +30,8 @@ $pagination = new SearchPaginationImpl($totalItems, $perPage, $requestedPage, $p
  * Although it is possible to load probably useful items (the first or last ones, depends on the client's request).
  */
 $entries = $pagination->isOnValidPage()
-	? array_slice($database, $pagination->getItemOffset(), $pagination->getItemLimit())
-	: array();
+    ? array_slice($database, $pagination->getItemOffset(), $pagination->getItemLimit())
+    : [];
 
 ?>
 <!DOCTYPE html>
@@ -72,12 +72,14 @@ $entries = $pagination->isOnValidPage()
 <p><?php
 
 if ($entries) {
-	printf('OFFSET=%s, LIMIT=%s, ENTRIES=%s',
-		$pagination->getItemOffset(), $pagination->getItemLimit(), implode(',', $entries));
-}
-
-else {
-	printf('No entries found for invalid page: `%s`.', htmlspecialchars($requestedPage));
+    printf(
+        'OFFSET=%s, LIMIT=%s, ENTRIES=%s',
+        $pagination->getItemOffset(),
+        $pagination->getItemLimit(),
+        implode(',', $entries)
+    );
+} else {
+    printf('No entries found for invalid page: `%s`.', htmlspecialchars($requestedPage));
 }
 
 ?></p>

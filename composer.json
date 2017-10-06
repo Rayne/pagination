@@ -14,13 +14,18 @@
     "license": "TODO",
     "name": "Rayne/Pagination",
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.6"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^5.7",
+        "friendsofphp/php-cs-fixer": "^2.7"
     },
     "support": {
         "issues": "http://github.com/rayne/pagination/issues",
         "source": "http://github.com/rayne/pagination"
+    },
+    "scripts": {
+        "format": "php-cs-fixer fix",
+        "test": "phpunit"
     }
 }
