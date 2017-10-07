@@ -10,7 +10,7 @@ Pagination library without dependencies.
 * [Examples](#examples)
 * [Tests](#tests)
 
-## INSTALLATION
+## Installation
 
 It's recommended to use the dependency manager
 [Composer](https://getcomposer.org/download)
@@ -20,7 +20,7 @@ to install `rayne/pagination`.
 composer require rayne/pagination
 ```
 
-## FEATURES
+## Features
 
 * Implementation of the *Search Pagination Pattern* defined by
   [Yahoo (Dead Link)](https://developer.yahoo.com/ypatterns/navigation/pagination/search.html)
@@ -48,7 +48,7 @@ composer require rayne/pagination
 
 * Array export for templating (`toArray()`)
 
-## USAGE
+## Usage
 
 ### SearchPagination
 
@@ -74,7 +74,7 @@ composer require rayne/pagination
    or `$pagination->toArray()`
    and the example templates in the `/examples` directory
 
-Read the [EXAMPLES](#EXAMPLES) section for examples and ideas.
+Read the [Examples](#examples) section for examples and ideas.
 
 ### FilterPagination
 
@@ -87,7 +87,7 @@ Rayne\Pagination\Filter\FilterPages
 Rayne\Pagination\Filter\FilterPagination
 ```
 
-## EXAMPLES
+## Examples
 
 The following examples are part of the `/examples` directory.
 
