@@ -149,7 +149,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int First page, even when there are no items.
+     * @inheritdoc
      */
     public function getFirstPage()
     {
@@ -157,7 +157,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int First page in range.
+     * @inheritdoc
      */
     public function getFirstPageInRange()
     {
@@ -165,7 +165,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int The previous page or - when invalid - the first page.
+     * @inheritdoc
      */
     public function getPreviousPage()
     {
@@ -173,9 +173,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int The current page or - when invalid - an appropriate (first or last) page.
-     * @see #getCorrectedPage
-     * @see #isOnInvalidPage
+     * @inheritdoc
      */
     public function getCurrentPage()
     {
@@ -183,7 +181,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int The next page or - when invalid - the last page.
+     * @inheritdoc
      */
     public function getNextPage()
     {
@@ -191,7 +189,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int Last page in range.
+     * @inheritdoc
      */
     public function getLastPageInRange()
     {
@@ -199,7 +197,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int The last page. Defaults to the first page when there are no items.
+     * @inheritdoc
      */
     public function getLastPage()
     {
@@ -209,7 +207,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return bool Whether the current page is the first one.
+     * @inheritdoc
      */
     public function isOnFirstPage()
     {
@@ -217,7 +215,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return bool Whether the current page is the last one.
+     * @inheritdoc
      */
     public function isOnLastPage()
     {
@@ -225,7 +223,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return bool Whether the injected current page is a valid one.
+     * @inheritdoc
      */
     public function isOnValidPage()
     {
@@ -233,7 +231,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int Items per page.
+     * @inheritdoc
      */
     public function getItemsPerPage()
     {
@@ -241,7 +239,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int Count of all items.
+     * @inheritdoc
      */
     public function getTotalItems()
     {
@@ -249,7 +247,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int Count of total pages.
+     * @inheritdoc
      */
     public function getTotalPages()
     {
@@ -257,7 +255,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int Item offset.
+     * @inheritdoc
      */
     public function getItemOffset()
     {
@@ -267,7 +265,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return int Item limit.
+     * @inheritdoc
      */
     public function getItemLimit()
     {
@@ -275,7 +273,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * @return array Sequence from first to last page in range, for instance "1,2,3".
+     * @inheritdoc
      */
     public function getSequence()
     {
@@ -283,18 +281,7 @@ class SearchPagination implements SearchPaginationInterface
     }
 
     /**
-     * Returns an array for debugging and templating.
-     *
-     * @return array Array of integers with keys first, begin, previous, page, next, end, last, offset and limit.
-     * @see #FIRST
-     * @see #BEGIN
-     * @see #PREVIOUS
-     * @see #PAGE
-     * @see #NEXT
-     * @see #END
-     * @see #LAST
-     * @see #OFFSET
-     * @see #LIMIT
+     * @inheritdoc
      */
     public function toArray()
     {

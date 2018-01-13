@@ -15,10 +15,6 @@ namespace Rayne\Pagination;
  * The method #isOnInvalidPage verifies whether the requested page is (in)valid.
  *
  * @see https://developer.yahoo.com/ypatterns/navigation/pagination/search.html
- * @see #toArray
- * @see #getItemLimit
- * @see #getItemOffset
- * @see #getSequence
  */
 interface SearchPaginationInterface
 {
@@ -84,8 +80,6 @@ interface SearchPaginationInterface
 
     /**
      * @return int The current page or - when invalid - an appropriate (first or last) page.
-     * @see #getCorrectedPage
-     * @see #isOnInvalidPage
      */
     public function getCurrentPage();
 
@@ -152,16 +146,16 @@ interface SearchPaginationInterface
     /**
      * Returns an array for debugging and templating.
      *
-     * @return array Array of integers with keys first, begin, previous, page, next, end, last, offset and limit.
-     * @see #FIRST
-     * @see #BEGIN
-     * @see #PREVIOUS
-     * @see #PAGE
-     * @see #NEXT
-     * @see #END
-     * @see #LAST
-     * @see #OFFSET
-     * @see #LIMIT
+     * @return array Array of integers with keys `first`, `begin`, `previous`, `page`, `next`, `end`, `last`, `offset` and `limit`.
+     * @see SearchPaginationInterface::FIRST
+     * @see SearchPaginationInterface::BEGIN
+     * @see SearchPaginationInterface::PREVIOUS
+     * @see SearchPaginationInterface::PAGE
+     * @see SearchPaginationInterface::NEXT
+     * @see SearchPaginationInterface::END
+     * @see SearchPaginationInterface::LAST
+     * @see SearchPaginationInterface::OFFSET
+     * @see SearchPaginationInterface::LIMIT
      */
     public function toArray();
 }
