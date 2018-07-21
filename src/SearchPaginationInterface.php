@@ -12,7 +12,7 @@ namespace Rayne\Pagination;
 /**
  * Implementations calculate pagination and (database) query information.
  * Invalid pages get corrected to appropriate (first or last page) ones.
- * The method #isOnInvalidPage verifies whether the requested page is (in)valid.
+ * The method #isOnValidPage verifies whether the requested page is valid.
  *
  * @see https://developer.yahoo.com/ypatterns/navigation/pagination/search.html
  */
