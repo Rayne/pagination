@@ -9,9 +9,9 @@
 
 namespace Rayne\Pagination;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class CompatibilityTest extends PHPUnit_Framework_TestCase
+class CompatibilityTest extends TestCase
 {
     /**
      * Casting floats to strings changed with PHP 7.0.2.

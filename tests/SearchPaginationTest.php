@@ -9,10 +9,10 @@
 
 namespace Rayne\Pagination;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class SearchPaginationTest extends PHPUnit_Framework_TestCase
+class SearchPaginationTest extends TestCase
 {
     /**
      * Builds SearchPaginationImpl objects and verifies constructor values.
