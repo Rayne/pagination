@@ -14,14 +14,25 @@ namespace Rayne\Pagination\Filter;
  */
 class FilterPage
 {
+    /**
+     * @var string
+     */
     private $page;
+
+    /**
+     * @var string
+     */
     private $title;
+
+    /**
+     * @var int
+     */
     private $count;
 
     /**
-     * @param string $page
-     * @param string $title
-     * @param int $count
+     * @param string $page Page slug or ID, e.g. a letter or machine readable category name.
+     * @param string $title Human readable title, e.g. a letter or a translatable or translated category name.
+     * @param int $count The amount of records represented by this page. Can be ignored when the count is not relevant.
      */
     public function __construct($page, $title, $count = 0)
     {
@@ -31,7 +42,7 @@ class FilterPage
     }
 
     /**
-     * @return int
+     * @return int The amount of records represented by this page. Can be ignored when the count is not relevant.
      */
     public function getCount()
     {
@@ -39,7 +50,9 @@ class FilterPage
     }
 
     /**
-     * @return string
+     * @return string Page slug or ID, e.g. a letter or machine readable category name.
+     *
+     * TODO Rename to getId() or getSlug() or getMachineName() or getName()
      */
     public function getPage()
     {
@@ -47,7 +60,7 @@ class FilterPage
     }
 
     /**
-     * @return string
+     * @return string Human readable title, e.g. a letter or a translatable or translated category name.
      */
     public function getTitle()
     {

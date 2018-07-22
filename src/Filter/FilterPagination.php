@@ -148,6 +148,7 @@ class FilterPagination
             return $page == null ? null : $page->toArray();
         };
 
+        // TODO Has the callback to be applied every time? Wouldn't be a simple stored integer referencing a page in pages enough?
         return [
             'pages' => array_map($callback, $this->pages),
             'page' => $callback($this->getCurrentPage()),

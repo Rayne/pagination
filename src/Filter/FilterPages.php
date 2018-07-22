@@ -14,6 +14,9 @@ namespace Rayne\Pagination\Filter;
  */
 class FilterPages
 {
+    /**
+     * @var FilterPage[]
+     */
     private $pages = [];
 
     /**
@@ -25,8 +28,7 @@ class FilterPages
     }
 
     /**
-     * @param mixed $callback usort() compatible callback. FilterPage objects are callback arguments.
-     * @see #toArray
+     * @param mixed $callback `usort()` compatible callback. The callback will be faced with two `FilterPage` objects as arguments.
      */
     public function sort($callback)
     {
@@ -34,7 +36,7 @@ class FilterPages
     }
 
     /**
-     * @return array Array of sorted FilterPage objects.
+     * @return FilterPage[] Array of sorted FilterPage objects.
      */
     public function getPages()
     {
