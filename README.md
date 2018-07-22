@@ -22,31 +22,32 @@ composer require rayne/pagination
 
 ## Features
 
-* Implementation of the *Search Pagination Pattern* defined by
-  [Yahoo (Dead Link)](https://developer.yahoo.com/ypatterns/navigation/pagination/search.html)
+* Implementation of the
+  [Search Pagination Pattern](https://web.archive.org/web/20160407044536/https://developer.yahoo.com/ypatterns/navigation/pagination/search.html)
+  defined by Yahoo
 
-* Implementation of the *Filter Pagination Pattern* defined by Yahoo
+  * One or zero indexed pages
+
+  * Extracts safe page numbers from arbitrary user inputs,
+    e.g. first or last page on invalid input or when being out of bounds
+
+* Implementation of the
+  [Filter Pagination Pattern](https://web.archive.org/web/20150905182227/https://developer.yahoo.com/ypatterns/navigation/alphafilterlinks.html)
+  defined by Yahoo
+
   (This pattern is currently not officially supported but the code is ready for playing around)
 
 * No dependencies (except the ones for testing)
 
-* Support for zero indexed pages (`$isZeroBased=true`)
+* Framework-agnostic
 
-* Safe page verification accepting `mixed` data (client's raw input)
+  * No markup (but Bootstrap examples in `/examples`)
 
-* Ignore invalid page requests with `!SearchPagination->isOnValidPage()`
+  * No template engine (but Twig examples in `/examples`)
 
-* Fetch appropriate offsets (for first or last page) on special pages
+  * No database backend (but offset and limit provided)
 
-  * Pages out of bounds (`-10` or `900` out of `10`)
-
-  * Invalid pages (`4x`, `3.41` or `ARRAY()`  aren't integers)
-
-* No markup
-
-* Decoupled from databases
-
-* Array export for templating (`toArray()`)
+  * No URL builder
 
 ## Usage
 
@@ -75,6 +76,41 @@ composer require rayne/pagination
    and the example templates in the `/examples` directory
 
 Read the [Examples](#examples) section for examples and ideas.
+
+### SearchPaginationFactory
+
+Instead of creating the `SearchPaginationInterface` implementation by hand
+a configurable factory can be used to provide the pagination as a service.
+
+1. Either create a new factory (useful when working with a DI system) …
+
+   ```php
+   $factory = new SearchPaginationFactory;
+   ```
+
+   … or initialize/fetch the global one
+
+   ```php
+   $factory = SearchPaginationFactory::instance();
+   ```
+
+   The defaults are: one-indexed pages, `20` items per page and a page padding of `4`.
+
+2. Configure the factory (or skip this step)
+
+   ```php
+   $factory->setIsZeroBased(true);
+   $factory->setItemsPerPage(25);
+   $factory->setPagePadding(2);
+   ```
+
+3. Build a new `SearchPagination` object
+
+   ```php
+   $totalItems = 123;
+   $currentPage = 2;
+   $pagination = $factory->build($totalItems, $currentPage);
+   ```
 
 ### FilterPagination
 
